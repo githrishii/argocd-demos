@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx-app
+  name: root-app
   namespace: argocd
 spec:
-  project: frontend-team
+  project: default
   source:
     repoURL: https://github.com/githrishii/argocd-demos.git    # Replace it with your forked repo
     targetRevision: main
-    path: ui_approach/nginx
+    path: app_of_apps/apps   # path of Nginx Application
   destination:
-    server: https://172.31.18.89:33893  # Replace with your Cluster Url, To get run: `argocd cluster list`
-    namespace: frontend
+    server: https://172.31.18.89:33893   # Replace with your Cluster Url, To get run: `argocd cluster list`
+    namespace: default
   syncPolicy:
     automated:
       prune: true
